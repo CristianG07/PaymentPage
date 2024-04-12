@@ -1,0 +1,8 @@
+export { default as american_express } from './american-express-logo.png'
+export { default as mastercard_logo } from './mastercard-logo.png'
+export { default as mastercard_logo_demo } from './mastercard-logo-demo.png'
+export { default as visa_logo } from './visa-logo.png'
+export { default as payment_background } from './payment-background.png'
+export { default as circle_background } from './circle-background.png'
+export { default as chip } from './chip.png'
+export { default as signal } from './signal.png'
