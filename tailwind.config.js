@@ -13,9 +13,9 @@ export default {
         'input_background': '#D9E3D8',
       },
       backgroundImage: {
-        'payment_background': "url('./src/assets/img/payment-background.png')",
-        'circle_background': "url('./src/assets/img/circle-background.png')",
-        'credit_card_background': "url('./src/assets/img/credit-card-background.png')"
+        'payment_background': "url('/src/assets/img/payment-background.png')",
+        'circle_background': "url('/src/assets/img/circle-background.png')",
+        'credit_card_background': "url('/src/assets/img/credit-card-background.png')"
       },
       fontFamily: {
         'montserrat': ['Montserrat']
