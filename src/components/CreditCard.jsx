@@ -18,7 +18,8 @@ export const CreditCard = ({
   numeroTarjeta,
   fechaExpiracion,
   numeroCcv,
-  nombreTarjeta
+  nombreTarjeta,
+  isChecked
 }) => {
   const [CambioDePosicion, setCambioDePosicion] = useState(false)
   const [numeroTarjetaFormat, setNumeroTarjetaFormat] = useState('')
@@ -34,7 +35,7 @@ export const CreditCard = ({
 
   useEffect(() => {
     setCambioDePosicion(false)
-  }, [numeroTarjeta, nombreTarjeta, fechaExpiracion])
+  }, [numeroTarjeta, nombreTarjeta, fechaExpiracion, isChecked])
 
   useEffect(() => {
     setNumeroTarjetaFormat(FuncionNumeroTarjeta(numeroTarjeta))

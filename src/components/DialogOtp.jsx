@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Button_Primary } from './Button_Primary'
+import { close, decoration1, decoration2, decoration3, decoration4 } from '../assets/img'
 
 export const DialogOtp = ({ props }) => {
   const { isOpenDialogOtp, setOpenDialogOtp } = props
@@ -32,15 +32,15 @@ export const DialogOtp = ({ props }) => {
 
   return (
     <section
-      className={`fixed flex left-0 top-0 justify-center items-center w-full h-full bg-[#000000CC] ${
+      className={`fixed flex left-0 top-0 flex-col md:flex-row gap-6 justify-center items-center w-full h-full bg-[#000000CC] ${
         isOpenDialogOtp ? 'opacity-100 visible' : ' opacity-0 invisible'
       } transition-all duration-500`}
     >
       <div
         ref={refDialog}
-        className='bg-primary w-[90%] max-w-xl py-14 px-1 md:px-5 rounded-2xl text-center space-y-9'
+        className='relative z-30 bg-primary w-[90%] max-w-xl py-14 px-1 md:px-5 rounded-2xl text-center '
       >
-        <div className='px-3'>
+        <div className='px-3 mb-7'>
           <h3 className='text-2xl font-medium'>Введите код подтверждения</h3>
         </div>
         <div className='space-y-10'>
@@ -64,13 +64,28 @@ export const DialogOtp = ({ props }) => {
           <div>
             <a
               href='/'
-              className='bg-secondary hover:bg-green-600 duration-500 text-sm rounded-full font-bold text-nowrap px-14 py-3'
+              className='bg-secondary hover:bg-green-600 duration-500 text-sm rounded-full font-bold text-nowrap px-10 py-3'
             >
               Отправить
             </a>
           </div>
         </div>
+        <div className='hidden md:block absolute top-0 left-0 -z-10'>
+          <img src={decoration1} alt='decoration1' />
+        </div>
+        <div className='hidden md:block absolute bottom-0 right-0 -z-10'>
+          <img src={decoration2} alt='decoration2' />
+        </div>
+        <div className='md:hidden absolute top-0 left-0 -z-10'>
+          <img src={decoration3} alt='decoration3' />
+        </div>
+        <div className='md:hidden absolute bottom-0 right-0 -z-10'>
+          <img src={decoration4} alt='decoration4' />
+        </div>
       </div>
+      <button onClick={() => setOpenDialogOtp(false)} className='h-fit md:h-full flex md:max-h-[20.5rem] w-6'>
+        <img src={close} alt="close" />
+      </button>
     </section>
   )
 }

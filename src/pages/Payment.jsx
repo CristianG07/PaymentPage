@@ -1,15 +1,16 @@
-import { useState } from "react"
-import { american_express, mastercard_logo, visa_logo } from "../assets/img"
-import { Input } from "../components/Input"
-import { Button_Primary } from "../components/Button_Primary"
-import { CreditCard } from "../components/CreditCard"
-import { useNavigate } from "react-router-dom"
-import { DialogOtp } from "../components/DialogOtp"
+import { useState } from 'react'
+import { american_express, mastercard_logo, visa_logo } from '../assets/img'
+import { Input } from '../components/Input'
+import { Button_Primary } from '../components/Button_Primary'
+import { CreditCard } from '../components/CreditCard'
+import { useNavigate } from 'react-router-dom'
+import { DialogOtp } from '../components/DialogOtp'
 
 const Payment = () => {
   const navigate = useNavigate()
   const [isOpenDialogOtp, setOpenDialogOtp] = useState(false)
-  const [inputError, setInputError] = useState(false);
+  const [inputError, setInputError] = useState(false)
+  const [isChecked, setIsChecked] = useState(false)
   const [numeroTarjeta, setNumeroTarjeta] = useState('')
   const [nombreTarjeta, setNombreTarjeta] = useState('')
   const [fechaExpiracion, setFechaExpiracion] = useState('')
@@ -32,15 +33,24 @@ const Payment = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (numeroTarjeta.length < 0 || !nombreTarjeta || !fechaExpiracion || !numeroCcv) {
+    if (
+      numeroTarjeta.length < 0 ||
+      !nombreTarjeta ||
+      !fechaExpiracion ||
+      !numeroCcv
+    ) {
       setInputError(true)
       return
     }
 
-    setOpenDialogOtp(true);
+    setOpenDialogOtp(true)
     setInputError(false)
+  }
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
   };
 
   const cards_logos = [
@@ -52,7 +62,10 @@ const Payment = () => {
   return (
     <section className='flex justify-center items-center my-10 lg:my-0 lg:h-screen text-text_color'>
       <div className='grid lg:grid-cols-2 w-[90%] md:w-[85%] max-w-7xl rounded-[2.5rem] overflow-hidden'>
-        <form onSubmit={handleSubmit} className='bg-primary -translate-y-10 lg:translate-y-0 py-6 rounded-[2.5rem] lg:rounded-none lg:py-16 px-5 md:px-28 order-2 lg:order-none'>
+        <form
+          onSubmit={handleSubmit}
+          className='bg-primary -translate-y-10 lg:translate-y-0 py-6 rounded-[2.5rem] lg:rounded-none lg:py-16 px-5 md:px-28 order-2 lg:order-none'
+        >
           <div className='space-y-4 mb-5'>
             <h3 className='text-center text-2xl font-medium'>
               Информация об оплате
@@ -110,6 +123,8 @@ const Payment = () => {
               id='default-checkbox'
               className='w-4 h-4 checked:bg-black bg-blue-500 text-blue-600 border-gray-300'
               type='checkbox'
+              checked={isChecked}
+              onChange={handleCheckboxChange}
               required
             />
             <label htmlFor='default-checkbox' className='text-sm font-medium'>
@@ -117,7 +132,11 @@ const Payment = () => {
             </label>
           </div>
           <div className='flex justify-between items-center gap-6'>
-            <Button_Primary onClick={() => navigate('/')} type='button' className='w-1/2 py-2.5 bg-transparent hover:bg-secondary hover:text-white border-2 border-secondary text-secondary'>
+            <Button_Primary
+              onClick={() => navigate('/')}
+              type='button'
+              className='w-1/2 py-2.5 bg-transparent hover:bg-secondary hover:text-white border-2 border-secondary text-secondary'
+            >
               Назад
             </Button_Primary>
             <Button_Primary className='w-1/2 py-3'>Оплатить</Button_Primary>
@@ -130,11 +149,12 @@ const Payment = () => {
               fechaExpiracion={fechaExpiracion}
               nombreTarjeta={nombreTarjeta}
               numeroCcv={numeroCcv}
+              isChecked={isChecked}
             />
           </div>
         </div>
       </div>
-      <DialogOtp props={{isOpenDialogOtp, setOpenDialogOtp}} />
+      <DialogOtp props={{ isOpenDialogOtp, setOpenDialogOtp }} />
     </section>
   )
 }
