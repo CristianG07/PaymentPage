@@ -104,7 +104,7 @@ const Payment = () => {
             <div className='flex gap-6'>
               <Input
                 type='text'
-                maxLength={4}
+                maxLength={5}
                 onChange={onChangeFechaExpiracionTarjeta}
                 placeholder='MM/YY'
                 required
@@ -125,7 +125,6 @@ const Payment = () => {
               type='checkbox'
               checked={isChecked}
               onChange={handleCheckboxChange}
-              required
             />
             <label htmlFor='default-checkbox' className='text-sm font-medium'>
               Запомнить эту карту
