@@ -9,7 +9,6 @@ import { DialogOtp } from '../components/DialogOtp'
 const Payment = () => {
   const navigate = useNavigate()
   const [isOpenDialogOtp, setOpenDialogOtp] = useState(false)
-  const [inputError, setInputError] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
   const [numeroTarjeta, setNumeroTarjeta] = useState('')
   const [nombreTarjeta, setNombreTarjeta] = useState('')
@@ -17,36 +16,35 @@ const Payment = () => {
   const [numeroCcv, setNumeroCcv] = useState('')
 
   const onChangeNumeroTarjeta = (e) => {
-    setNumeroTarjeta(e.target.value)
+    let input = e.target.value
+    input = input.replace(/\D/g, "");
+    setNumeroTarjeta(input);
   }
 
   const onChangeNombreTarjeta = (e) => {
-    setNombreTarjeta(e.target.value)
+    let input = e.target.value;
+    input = input.replace(/[^a-zA-Z\s]/g, "");
+    setNombreTarjeta(input);
   }
 
   const onChangeFechaExpiracionTarjeta = (e) => {
-    setFechaExpiracion(e.target.value)
+    let input = e.target.value;
+    input = input.replace(/\D/g, "");
+    if (input.length > 2) {
+      input = input.slice(0, 2) + "/" + input.slice(2);
+    }
+    setFechaExpiracion(input);
   }
 
   const onChangeCcvTarjeta = (e) => {
-    setNumeroCcv(e.target.value)
+    let input = e.target.value
+    input = input.replace(/\D/g, "");
+    setNumeroCcv(input)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    if (
-      numeroTarjeta.length < 0 ||
-      !nombreTarjeta ||
-      !fechaExpiracion ||
-      !numeroCcv
-    ) {
-      setInputError(true)
-      return
-    }
-
     setOpenDialogOtp(true)
-    setInputError(false)
   }
 
   const handleCheckboxChange = (e) => {
@@ -88,8 +86,8 @@ const Payment = () => {
             </div>
             <Input
               type='text'
-              className={`${inputError && numeroTarjeta ? '' : ''}`}
               maxLength={16}
+              value={numeroTarjeta}
               onChange={onChangeNumeroTarjeta}
               placeholder='Номер карты'
               required
@@ -97,6 +95,7 @@ const Payment = () => {
             <Input
               type='text'
               maxLength={20}
+              value={nombreTarjeta}
               onChange={onChangeNombreTarjeta}
               placeholder='Имя на карте'
               required
@@ -105,6 +104,7 @@ const Payment = () => {
               <Input
                 type='text'
                 maxLength={5}
+                value={fechaExpiracion}
                 onChange={onChangeFechaExpiracionTarjeta}
                 placeholder='MM/YY'
                 required
@@ -112,6 +112,7 @@ const Payment = () => {
               <Input
                 type='text'
                 maxLength={3}
+                value={numeroCcv}
                 onChange={onChangeCcvTarjeta}
                 placeholder='CVV'
                 required

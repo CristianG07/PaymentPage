@@ -1,5 +1,3 @@
-//** ESTA FUNCION LO QUE HACE ES TRANSFORMAR UN NUMERO EN UNO DE TARJETA : #### #### #### #### */
-
 export const FuncionNumeroTarjeta = (numero_de_tarjeta) => {
   let nuevoString = "";
 
@@ -13,15 +11,11 @@ export const FuncionNumeroTarjeta = (numero_de_tarjeta) => {
   return nuevoString;
 };
 
-//** LO QUE HACE ESTA FUNCION ES IDENTIFICAR EL TIPO DE TARJETA (VISA , MASTERCARD y AMERICAN EXPRESS) */
-
 export const FuncionIdentificarTipoTarjeta = (numeroTarjeta) => {
-  // Eliminar espacios en blanco y guiones
   let numeroTarjetaLimpiado = numeroTarjeta
     .replace(/\s+/g, "")
     .replace(/-/g, "");
 
-  // Verificar el tipo de tarjeta usando expresiones regulares
   if (/^4[0-9]{12}(?:[0-9]{3})?$/.test(numeroTarjetaLimpiado)) {
     return "Visa";
   } else if (/^5[1-5][0-9]{14}$/.test(numeroTarjetaLimpiado)) {
@@ -32,8 +26,6 @@ export const FuncionIdentificarTipoTarjeta = (numeroTarjeta) => {
     return "";
   }
 };
-
-//** FUNCION QUE VERIFICA SI LA FECHA INGRESADA ESTA EXPIRADA */
 
 export const FuncionVerificarVencimientoFecha = (value) => {
   const [mesStr, añoStr] = value.split("/");
@@ -48,15 +40,12 @@ export const FuncionVerificarVencimientoFecha = (value) => {
       fechaDate.getFullYear().toString()[3]
   );
 
-  // Comparar con el objeto Date
   if (mes >= fechaDate.getMonth() + 1 && año < fechaDateAño) {
     return "TARJETA EXPIRADA";
   } else {
     return "";
   }
 };
-
-//** FUNCION QUE FORMATEA UN STRING EN UNA FECHA DEL TIPO MM/AA */
 
 export const FuncionFormatMesAño = (value) => {
   let mes = "";

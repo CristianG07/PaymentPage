@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   american_express,
   chip,
@@ -52,8 +51,8 @@ export const CreditCard = ({
         CambioDePosicion ? 'voltear' : ''
       }`}
     >
-      <div className='flip-card-inner'> 
-        <div className='Delantera bg-credit_card_background bg-cover'>
+      <div className='flip-card-inner h-full text-center'> 
+        <div className='front bg-credit_card_background bg-cover'>
           <div className='h-full flex flex-col justify-between px-6 py-5 md:px-9 md:py-8'>
             <div className='flex items-center justify-between h-14'>
               <div className='flex items-center w-20 md:w-28 justify-between gap-3 lg:gap-5'>
@@ -120,7 +119,7 @@ export const CreditCard = ({
           </div>
         </div>
 
-        <div className='Trasera bg-credit_card_background space-y-5'>
+        <div className='back bg-credit_card_background space-y-5'>
           <div className='strip' />
           <div className='Container-Firma-Ccv'>
             <div className='mstrip'>

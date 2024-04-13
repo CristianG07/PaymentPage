@@ -7,6 +7,9 @@ export const DialogOtp = ({ props }) => {
   const refDialog = useRef(null)
 
   const handleChange = (index, e) => {
+    let input = e.target.value;
+    input = input.replace(/\D/g, "");
+    e.target.value = input;
     const inputLength = e.target.value.length
     const maxLength = parseInt(e.target.maxLength, 10)
 
